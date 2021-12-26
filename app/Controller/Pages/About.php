@@ -9,18 +9,20 @@ use \App\Model\Entity\Organization;
  * Estende Page para utilizar o método getPage passando o conteúdo resultante de View::render, que por sua vez recebe os
  * dados proveniente do modelo Organization.
  */
-class Home extends Page
+class About extends Page
 {
-  public static function getHome(): string
+  public static function getAbout(): string
   {
     $dataOrganization = new Organization;
 
     $infos = [
-      "name" => $dataOrganization->name
+      "name" => $dataOrganization->name,
+      "site" => $dataOrganization->site,
+      "description" => $dataOrganization->description
     ];
 
-    $content = View::render("pages/home", $infos);
+    $content = View::render("pages/about", $infos);
 
-    return parent::getPage("Homepage", $content);
+    return parent::getPage("About page", $content);
   }
 }

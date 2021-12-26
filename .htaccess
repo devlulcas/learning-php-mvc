@@ -1,0 +1,11 @@
+# CONFIGURAÇÃO DO SERVIDOR APACHE 
+# Liga o rewrite | Qualquer URL que não for um arquivo chamara o index.php 
+RewriteEngine on
+
+# Regra de rewrite para enviar todos as requisições que não pedem arquivos para o index.php
+# A condição abaixo (RewriteCond) diz que o nome do arquivo (REQUEST_FILENAME) não pode ser um arquivo (!-f), se for a gente 
+# continua entregando do jeito que tá atualmente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ ./index.php [QSA,NC]
+# Acima vemos uma expressão regular (regex) que diz que todas as requisições devem ser passadas para o nosso script
+# index.php. Já sabemos que essa regra só vale para requisições que NÃO estão procurando por arquivos.

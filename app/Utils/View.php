@@ -5,6 +5,15 @@ namespace App\Utils;
 class View
 {
   /**
+   * Algumas das variáveis do sistema são padronizadas, como a URL por exemplo
+   */
+  private static array $defaultVars = [];
+  public static function init(array $vars = [])
+  {
+    self::$defaultVars = $vars;
+  }
+
+  /**
    * Verifica se o nome da view (arquivo html) passado existe e caso exista o arquivo html é lido e retornado como uma string, 
    * caso não exista uma string vazia é retornada
    */
@@ -23,18 +32,27 @@ class View
    */
   public static function render(string $view, array $vars = []): string
   {
-    // Método estático com o HTML
+    // Método estático que traz o HTML como string
     $contentView = self::getContentView($view);
-
-    // Obter variáveis que serão substituídas do HTML
-    $keys = array_keys($vars);
-    $placeholderKeys = array_map(function ($key) {
+    /**
+     * Unimos as variáveis padrão (URL e afins) com as que são definidas para cada página.
+     * No PHP 8.1 podemos utilizar os três pontos para espalhar os elementos de cada array em um novo array
+     * ... = spread operator
+     * $mergedVars = [...self::$defaultVars, ...$vars];
+     * 
+     * Para outras versões podemos usar o array_merge
+     */
+    $mergedVars = array_merge(self::$defaultVars, $vars);
+    // Obter o "nome" das variáveis que serão substituídas do HTML
+    $keys = array_keys($mergedVars);
+    // Função lambda que será responsável por criar os placeholder que serão substitídos do HTML
+    $createPlaceholder = function ($key) {
       return "{{" . $key . "}}";
-    }, $keys);
-
+    };
+    // Aplicando a lambda em cada um dos elementos do array $keys, gerando um array de elementos neste estilo: "{{key}}"
+    $placeholderKeys = array_map($createPlaceholder, $keys);
     // Substituir placeholders por variáveis reais
-    $parsedContentView = str_replace($placeholderKeys, array_values($vars), $contentView);
-
+    $parsedContentView = str_replace($placeholderKeys, array_values($mergedVars), $contentView);
     // Retorna view com conteúdo novo
     return $parsedContentView;
   }
