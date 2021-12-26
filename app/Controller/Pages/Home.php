@@ -5,6 +5,10 @@ namespace App\Controller\Pages;
 use \App\Utils\View;
 use \App\Model\Entity\Organization;
 
+/**
+ * Estende Page para utilizar o método getPage passando o conteúdo resultante de View::render, que por sua vez recebe os
+ * dados proveniente do modelo Organization.
+ */
 class Home extends Page
 {
   public static function getHome(): string

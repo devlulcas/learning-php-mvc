@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!--
+  Esta página é basicamente um template HTML que será passado para o controller Page.php.
+  Quando for passado para o controller a classe View será chamada para lêr o arquivo e substituir as variáveis
+  pelos outros trechos de dados que forem necessários, nesse caso o {{header}} é o arquivo header.html
+  e o footer é o footer.html. Já o content pode ser qualquer outra página html, como por exemplo a home.html.
+
+  Usando está técnica, basta passar algo diferente para entrar na tag content que tudo muda.
+
+  OBS: {{}} não é algo do PHP, é um padrão definido por nós e que é muito usado em outras template engines, mas poderiamos
+  usar literalmente qualquer coisa que fosse possível de identificar e substituir com o str_replace().
+-->
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
