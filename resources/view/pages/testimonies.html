@@ -1,0 +1,49 @@
+<h1 class="text-center">Depoimentos</h1>
+<section id="form">
+  <h2>Envie seu depoimento</h2>
+  <form method="POST" action="" class="form-group">
+    <!--INPUT TEXT NOME-->
+    <label for="name">Nome</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      class="form-control mb-2"
+      required
+    />
+
+    <!--TEXTAREA INPUT DEPOIMENTO-->
+    <label for="testimony">Depoimento</label>
+    <textarea
+      name="testimony"
+      id="testimony"
+      cols="10"
+      rows="5"
+      class="d-block mb-3 w-100 form-control"
+      style="resize: none"
+    ></textarea>
+
+    <!--BUTTON SEND-->
+    <button
+      type="submit"
+      class="btn text-light bg-primary font-weight-bold mb-5"
+    >
+      Enviar depoimento
+    </button>
+  </form>
+</section>
+
+<!--DEPOIMENTOS-->
+<main>
+  <article class="card m-0 p-3">
+    <h3 class="card-header text-center bg-primary h2">Depoimentos</h3>
+    <time class="text-center text-dark" datetime="2022-01-04">2022/01/04</time>
+    <section class="card-body">
+      <p class="text-dark m-0 h5">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam quis
+        saepe, tenetur sapiente optio, quo accusantium accusamus distinctio odit
+        esse vero, eligendi laboriosam? Quisquam, a.
+      </p>
+    </section>
+  </article>
+</main>

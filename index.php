@@ -8,6 +8,7 @@ use \App\Utils\View;
 use \WilliamCosta\DotEnv\Environment;
 
 // Constante que define a URL do projeto (pode variar para você)
+Environment::load(__DIR__);
 $envUrl = getenv("DEVURL");
 define("URL", $envUrl);
 
