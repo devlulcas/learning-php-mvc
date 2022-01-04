@@ -5,9 +5,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 use \App\Http\Router;
 use \App\Utils\View;
+use \WilliamCosta\DotEnv\Environment;
 
 // Constante que define a URL do projeto (pode variar para você)
-define("URL", "http://localhost:2309");
+$envUrl = getenv("DEVURL");
+define("URL", $envUrl);
 
 // Carregando variáveis padrão
 View::init([
