@@ -7,5 +7,8 @@
 	},
 	"scripts": {
 		"dev":"xdg-open 'http://localhost:2309'; php -S localhost:2309"
+	},
+	"require": {
+		"william-costa/dot-env": "^0.1.0"
 	}
 }
