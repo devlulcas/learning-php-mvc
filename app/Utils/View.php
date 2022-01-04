@@ -7,7 +7,7 @@ class View
   /**
    * Algumas das variáveis do sistema são padronizadas, como a URL por exemplo
    */
-  private static array $defaultVars = [];
+  private static $defaultVars = [];
   public static function init(array $vars = [])
   {
     self::$defaultVars = $vars;

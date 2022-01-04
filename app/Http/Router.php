@@ -11,23 +11,27 @@ class Router
 {
   /**
    * Url completa do projeto
+   * @var string 
    */
-  private string $url = "";
+  private $url = "";
 
   /**
    * Prefixo de todas as rotas
+   * @var string
    */
-  private string $prefix = "";
+  private $prefix = "";
 
   /**
    * Índice de rotas
+   * @var array
    */
-  private array $routes = [];
+  private $routes = [];
 
   /** 
    * Instância da classe Request
+   * @var Request
    */
-  private Request $request;
+  private $request;
 
   public function __construct($url)
   {

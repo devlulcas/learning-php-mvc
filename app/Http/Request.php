@@ -4,20 +4,35 @@ namespace App\Http;
 
 class Request
 {
-  // GET / POST / ETC
-  private string $httpMethod;
+  /**
+   * GET / POST / ETC
+   * @var string
+   */
+  private $httpMethod;
 
-  // Route
-  private string $uri;
+  /**
+   * Route
+   * @var string
+   */
+  private $uri;
 
-  // Url params
-  private array $queryParams = [];
+  /**
+   * Url params
+   * @var array
+   */
+  private $queryParams = [];
 
-  // $_POST
-  private array $postVars = [];
+  /**
+   * $_POST
+   * @var array
+   */
+  private $postVars = [];
 
-  // Headers
-  private array $headers = [];
+  /**
+   * Headers
+   * @var array
+   */
+  private $headers = [];
 
   public function __construct()
   {

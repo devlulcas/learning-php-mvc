@@ -4,14 +4,23 @@ namespace App\Http;
 
 class Response
 {
-  // Código do status http
-  private int $httpCode = 200;
+  /**
+   * Código do status http
+   * @var int
+   */
+  private $httpCode = 200;
 
-  // Cabeçalhos HTTP para retornar
-  private array $headers = [];
+  /**
+   * Cabeçalhos HTTP para retornar
+   * @var array
+   */
+  private $headers = [];
 
-  // Enviamos html por padrão 
-  private string $contentType = "text/html";
+  /**
+   * Enviamos html por padrão
+   * @var string 
+   * */ 
+  private $contentType = "text/html";
 
   /**
    * Conteúdo contido na resposta
