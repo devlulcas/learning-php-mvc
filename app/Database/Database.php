@@ -137,6 +137,23 @@ class Database
     }
 
     /**
+     * Executa um select em uma tabela do banco. 
+     */
+    public function executeSelectQuery(string $query, array $params = [])
+    {
+        $params = self::getValuesOfObjects($params);
+        try {
+            $statement = $this->connection->prepare($query);
+            $statement->execute($params);
+            // Retorna o resultado da query como um array associativo
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $err) {
+            die('ERROR: ' . $err->getMessage());
+        }
+    }
+
+    /**
      * Insere dados em uma tabela do banco. O parâmetro da função é um array associativo onde as
      * chaves são os campos do banco de dados e os valores do array serão inseridos como
      * valores para aqueles campos do banco.
@@ -171,6 +188,17 @@ class Database
         $result = $this->executeQuery($query, array_values($valuesArray));
 
         if ($result->rowCount() > 0) return true;
+    }
+
+    public function findRelations($where = null, $join = null, $order = null, $limit = null, $fields = '*')
+    {
+        // Query statements. Caso algum seja passado a string para rodar ele é gerada
+        $whereStatement = $where ? "WHERE $where" : '';
+        $joinStatement = $join ? "LEFT JOIN $join" : '';
+        $orderStatement = $order ? "ORDER BY $order" : '';
+        $limitStatement = $limit ? "LIMITE $limit" : '';
+
+        // TODO: Montar a query
     }
 
     private static function getValuesOfObjects($object)
