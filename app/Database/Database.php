@@ -58,7 +58,7 @@ class Database
     /**
      * Instância para conexão com o banco e preparação da tabela
      */
-    public function __constructor(string $table = null)
+    public function __construct(string $table = null)
     {
         $this->table = $table;
         $this->setConnection();
@@ -78,13 +78,34 @@ class Database
         self::$port = $config['port'];
     }
 
+    /**
+     * Abstração da conexão com o PDO
+     */
     private function setConnection()
     {
         try {
+            /**
+             * String de configuração com o driver.
+             * Resulta em algo semelhante a: 
+             * firebird:dbname=127.0.0.1:/home/database/MVC.fdb;charset=utf8;dialect=3
+             * @var string
+             */
             $configString = self::$driver . ':dbname=' . self::$host . self::$name . ';charset=utf8;dialect=3';
-            
-        } catch (\Throwable $th) {
-            //throw $th;
+            /**
+             * Inicia nova conexão utilizando o PDO
+             */
+            $this->connection = new PDO($configString, self::$user, self::$pass);
+            /**
+             * Diz a forma como o PHP vai lidar com o PDO, neste caso estamos setando modo de erros do PDO 
+             * para cuspir uma exception, mas poderiamos exibir um warning ou silenciar erros
+             */
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $err) {
+            /**
+             * Trata o erro
+             */
+            die('ERROR: ' . $err->getMessage());
         }
     }
+    // Continua...
 }
