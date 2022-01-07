@@ -135,4 +135,47 @@ class Database
             }
         }
     }
+
+    /**
+     * Insere dados em uma tabela do banco. O parâmetro da função é um array associativo onde as
+     * chaves são os campos do banco de dados e os valores do array serão inseridos como
+     * valores para aqueles campos do banco.
+     * [chave => valor]
+     * @param array $values [campo => valor]
+     * @return int|boolean
+     */
+    public function executeInsert(array $values)
+    {
+        $valuesArray = self::getValuesOfObjects($values);
+        $fields = array_keys($valuesArray);
+        $fieldsLength = count($valuesArray);
+        /**
+         * Gera um array com uma interrogação para cada campo a ser inserido
+         * array_pad( [], 5, '?' ) => ['?', '?', '?', '?', '?']
+         * ou
+         * array_fill(0, 5, '?') => ['?', '?', '?', '?', '?']
+         */
+        $binds = array_pad([], $fieldsLength, '?');
+
+        // Monta a query
+        $tableName = $this->table;
+        // Transforma as arrays em string com cada valor separado por vírgula
+        $commaSeparatedFields = implode(',', $fields);
+        $commaSeparatedBinds = implode(',', $binds);
+        $query = "INSERT INTO $tableName ( $commaSeparatedFields ) VALUES ( $commaSeparatedBinds )";
+        // Executa a query
+        $result = $this->executeQuery($query, array_values($valuesArray));
+
+        if ($result->rowCount() > 0) return true;
+    }
+
+    private static function getValuesOfObjects($object)
+    {
+        if (!is_object($object)) return $object;
+        // Se for um objeto criamos um array associativo e retornamos ele
+        foreach ($object as $key => $value) {
+            $array[$key] = $value;
+        }
+        return $array;
+    }
 }
