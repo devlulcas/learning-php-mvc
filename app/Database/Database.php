@@ -154,6 +154,10 @@ class Database
          * array_pad( [], 5, '?' ) => ['?', '?', '?', '?', '?']
          * ou
          * array_fill(0, 5, '?') => ['?', '?', '?', '?', '?']
+         * 
+         * Esse array será tranformado em uma string assim: "?, ?, ?, ?, ?". 
+         * Essa string será colocada em uma query como está: INSERT INTO users (name, age, can_drink) VALUES (?, ?, ?);
+         * Essa query string terá essas interrogações substituídas por valores reais que foram tratados pelo PDO (Ajuda a evitar SQLi, eu acho).
          */
         $binds = array_pad([], $fieldsLength, '?');
 
