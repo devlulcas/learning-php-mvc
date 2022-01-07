@@ -4,6 +4,7 @@ namespace App\Database;
 
 use \PDO;
 use \PDOException;
+use PDOStatement;
 
 class Database
 {
@@ -107,5 +108,31 @@ class Database
             die('ERROR: ' . $err->getMessage());
         }
     }
-    // Continua...
+
+    /**
+     * Executa queries no banco de dados
+     */
+    public function executeQuery(string $query, array $params = []): PDOStatement
+    {
+        try {
+            $preparedStatement = $this->connection->prepare($query);
+            $preparedStatement->execute($params);
+            return $preparedStatement;
+        } catch (PDOException $err) {
+            /**
+             * Erro retornado pelo banco de dados quando uma operação de insert, update ou 
+             * delete viola uma chave primária, chave estrangeira, check ou um index único.
+             */
+            $integrityConstraintViolation = 23000;
+            switch ($err->getCode()) {
+                case $integrityConstraintViolation:
+                    throw new \Exception('Dados já existentes');
+                    break;
+                default:
+                    // Caso o erro seja outro escapamos a mensagem de erro 
+                    die('ERROR: ' . $err->getMessage());
+                    break;
+            }
+        }
+    }
 }
