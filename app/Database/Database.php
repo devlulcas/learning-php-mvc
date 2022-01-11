@@ -163,6 +163,7 @@ class Database
      */
     public function insert(array $values)
     {
+        // Processamos a entrada para obter um array
         $valuesArray = self::getValuesOfObjects($values);
         $fields = array_keys($valuesArray);
         $fieldsLength = count($valuesArray);
@@ -174,7 +175,8 @@ class Database
          * 
          * Esse array será tranformado em uma string assim: "?, ?, ?, ?, ?". 
          * Essa string será colocada em uma query como está: INSERT INTO users (name, age, can_drink) VALUES (?, ?, ?);
-         * Essa query string terá essas interrogações substituídas por valores reais que foram tratados pelo PDO (Ajuda a evitar SQLi, eu acho).
+         * Essa query string terá essas interrogações substituídas por valores reais que foram tratados pelo PDO 
+         * (Ajuda a evitar SQLi, eu acho).
          */
         $binds = array_pad([], $fieldsLength, '?');
 
@@ -201,7 +203,7 @@ class Database
         $whereStatement = $where ? "WHERE $where" : '';
         $joinStatement = $join ? "LEFT JOIN $join" : '';
         $orderStatement = $order ? "ORDER BY $order" : '';
-        $limitStatement = $limit ? "LIMITE $limit" : '';
+        $limitStatement = $limit ? "LIMIT $limit" : '';
         // Concatena os statements
         $statements = "$joinStatement $whereStatement $orderStatement $limitStatement";
         // Monta a query concatenando os parâmetros
@@ -235,6 +237,29 @@ class Database
         $query = "SELECT $fields FROM {$this->table} $statements";
         // Usa o método interno de execução de queries para facilitar a vida
         return $this->executeQuery($query);
+    }
+
+    /**
+     * Realiza uma operação de update 
+     */
+    public function update(string $where, array $values)
+    {
+        $valuesArray = self::getValuesOfObjects($values);
+        $fields = array_keys($valuesArray);
+
+        // Monta a query
+        $tableName = $this->table;
+        // Esta interrogação será preenchida com valores pelo PDO
+        $sqlTerm = '=?, ';
+        // A operação abaixo resulta em um string assim: CAMPO=?, OUTRO_CAMPO=?
+        // Quando processar a string da query veremos algo assim: CAMPO=VALOR, OUTRO_CAMPO=OUTRO_VALOR
+        $termSeparatedFields = implode($sqlTerm, $fields);
+        $query = "UPDATE $tableName SET $termSeparatedFields=? WHERE $where";
+
+        // Executa a query
+        $this->executeQuery($query, array_values($valuesArray));
+
+        return true;
     }
 
     private static function getValuesOfObjects($object)
