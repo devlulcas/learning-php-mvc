@@ -161,7 +161,7 @@ class Database
      * @param array $values [campo => valor]
      * @return int|boolean
      */
-    public function executeInsert(array $values)
+    public function insert(array $values)
     {
         $valuesArray = self::getValuesOfObjects($values);
         $fields = array_keys($valuesArray);
