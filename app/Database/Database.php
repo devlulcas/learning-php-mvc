@@ -190,8 +190,13 @@ class Database
         if ($result->rowCount() > 0) return true;
     }
 
-    public function findRelations($where = null, $join = null, $order = null, $limit = null, $fields = '*')
-    {
+    public function findRelations(
+        string $where = null,
+        string $join = null,
+        string $order = null,
+        string $limit = null,
+        string $fields = '*'
+    ) {
         // Query statements. Caso algum seja passado a string para rodar ele é gerada
         $whereStatement = $where ? "WHERE $where" : '';
         $joinStatement = $join ? "LEFT JOIN $join" : '';
