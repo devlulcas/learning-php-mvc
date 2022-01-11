@@ -214,6 +214,29 @@ class Database
         }
     }
 
+    /**
+     * Realiza um select na tabela do banco de dados se baseando em alguns
+     * parâmetros passados para a função. Se diferencia do findRelations por não possuir
+     * um join statement disponível
+     */
+    public function select(
+        string $where = null,
+        string $order = null,
+        string $limit = null,
+        string $fields = '*'
+    ) {
+        // Query statements. Caso algum seja passado a string para rodar ele é gerada
+        $whereStatement = $where ? "WHERE $where" : '';
+        $orderStatement = $order ? "ORDER BY $order" : '';
+        $limitStatement = $limit ? "LIMITE $limit" : '';
+        // Concatena os statements
+        $statements = "$whereStatement $orderStatement $limitStatement";
+        // Monta a query concatenando os parâmetros
+        $query = "SELECT $fields FROM {$this->table} $statements";
+        // Usa o método interno de execução de queries para facilitar a vida
+        return $this->executeQuery($query);
+    }
+
     private static function getValuesOfObjects($object)
     {
         if (!is_object($object)) return $object;
