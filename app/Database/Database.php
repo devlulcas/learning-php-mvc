@@ -197,8 +197,16 @@ class Database
         $joinStatement = $join ? "LEFT JOIN $join" : '';
         $orderStatement = $order ? "ORDER BY $order" : '';
         $limitStatement = $limit ? "LIMITE $limit" : '';
-
-        // TODO: Montar a query
+        // Concatena os statements
+        $statements = "$joinStatement $whereStatement $orderStatement $limitStatement";
+        // Monta a query concatenando os parâmetros
+        $query = "SELECT $fields FROM {$this->table} $statements";
+        // Usa o método interno de execução de queries para facilitar a vida
+        $result = $this->executeQuery($query);
+        // Por que isto está em um while? Eu não sei
+        while ($finalResult = $result->fetchAll(PDO::FETCH_ASSOC)) {
+            return $finalResult;
+        }
     }
 
     private static function getValuesOfObjects($object)
