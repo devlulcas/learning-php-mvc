@@ -262,6 +262,17 @@ class Database
         return true;
     }
 
+    public function delete(string $where)
+    {
+        $query = "DELETE FROM {$this->table} WHERE $where";
+        $this->executeQuery($query);
+        /**
+         * Retorna true apenas se o caso anterior tiver sucesso, o próprio método
+         * executeQuery cospe um erro se algo der errado com o PDO
+         */
+        return true;
+    }
+
     private static function getValuesOfObjects($object)
     {
         if (!is_object($object)) return $object;
