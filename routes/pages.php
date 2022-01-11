@@ -31,9 +31,6 @@ $router->get("/testimonies", [
 
 $router->post("/testimonies", [
   function ($request) {
-    echo '<pre style="position: absolute; background: #000505; z-index:100; width:100%; color:#f06449; padding: 10px;">';
-    print_r($request);
-    echo '</pre>';
     return new Response(200, Pages\Testimony::getTestimonies());
   }
 ]);
