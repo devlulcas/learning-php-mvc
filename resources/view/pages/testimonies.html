@@ -1,11 +1,12 @@
 <h1 class="text-center">Depoimentos</h1>
 <section id="form">
   <h2>Envie seu depoimento</h2>
-  <form method="POST" action="" class="form-group">
+  <form method="POST" action="" class="form-group" data-js="testimony-form">
     <!--INPUT TEXT NOME-->
     <label for="name">Nome</label>
     <input
       type="text"
+      data-js="testimony-name"
       name="name"
       id="name"
       class="form-control mb-2"
@@ -16,6 +17,7 @@
     <label for="testimony">Depoimento</label>
     <textarea
       name="testimony"
+      data-js="testimony-content"
       id="testimony"
       cols="10"
       rows="5"
