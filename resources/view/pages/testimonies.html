@@ -1,29 +1,34 @@
 <h1 class="text-center">Depoimentos</h1>
 <section id="form">
   <h2>Envie seu depoimento</h2>
-  <form method="POST" action="" class="form-group" data-js="testimony-form">
+  <form method="POST" action="" class="form-group">
     <!--INPUT TEXT NOME-->
-    <label for="name">Nome</label>
-    <input
-      type="text"
-      data-js="testimony-name"
-      name="name"
-      id="name"
-      class="form-control mb-2"
-      required
-    />
+    <div class="form-control mb-3 p-2">
+      <label for="name">Nome</label>
+      <span data-js="error" class="error"></span>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        class="form-control mb-2"
+        required
+      />
+    </div>
 
     <!--TEXTAREA INPUT DEPOIMENTO-->
-    <label for="testimony">Depoimento</label>
-    <textarea
-      name="testimony"
-      data-js="testimony-content"
-      id="testimony"
-      cols="10"
-      rows="5"
-      class="d-block mb-3 w-100 form-control"
-      style="resize: none"
-    ></textarea>
+    <div class="form-control mb-3 p-2">
+      <label for="testimony">Depoimento</label>
+      <span data-js="error" class="error"></span>
+      <textarea
+        name="testimony"
+        id="testimony"
+        cols="10"
+        rows="5"
+        class="d-block w-100 form-control"
+        style="resize: none"
+        required
+      ></textarea>
+    </div>
 
     <!--BUTTON SEND-->
     <button
