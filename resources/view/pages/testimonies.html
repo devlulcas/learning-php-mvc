@@ -4,8 +4,10 @@
   <form method="POST" action="" class="form-group">
     <!--INPUT TEXT NOME-->
     <div class="form-control mb-3 p-2">
-      <label for="name">Nome</label>
-      <span data-js="error" class="error"></span>
+      <div class="d-flex justify-content-between">
+        <label for="name">Nome</label>
+        <span data-js="error" class="error"></span>
+      </div>
       <input
         type="text"
         name="name"
@@ -17,8 +19,10 @@
 
     <!--TEXTAREA INPUT DEPOIMENTO-->
     <div class="form-control mb-3 p-2">
-      <label for="testimony">Depoimento</label>
-      <span data-js="error" class="error"></span>
+      <div class="d-flex justify-content-between">
+        <label for="testimony">Depoimento</label>
+        <span data-js="error" class="error"></span>
+      </div>
       <textarea
         name="testimony"
         id="testimony"
@@ -27,6 +31,7 @@
         class="d-block w-100 form-control"
         style="resize: none"
         required
+        max="120"
       ></textarea>
     </div>
 
