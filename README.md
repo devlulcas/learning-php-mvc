@@ -22,4 +22,4 @@ composer dev
 
 ## SQL no Firebird 3:
 
-[Anotações de como realizar determinadas tarefas no banco](/FIREBIRD.Md)
+[Anotações de como realizar determinadas tarefas no banco](FIREBIRD.md)
