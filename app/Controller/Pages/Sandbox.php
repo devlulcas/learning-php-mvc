@@ -17,4 +17,10 @@ class Sandbox extends Page
 
         return parent::getPage("Sandbox", $content);
     }
+
+    public static function postSandbox(array $formData) {
+        echo '<pre style="position: absolute; background: #ffffff; z-index:100; width:100%; color:#f06449; padding: 10px;">';
+        print_r($formData);
+        echo '</pre>';
+    }
 }
