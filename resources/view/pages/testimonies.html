@@ -1,20 +1,14 @@
 <h1 class="text-center">Depoimentos</h1>
 <section id="form">
   <h2>Envie seu depoimento</h2>
-  <form method="POST" action="" class="form-group">
+  <form method="POST" action="/testimonies" class="form-group">
     <!--INPUT TEXT NOME-->
     <div class="form-control mb-3 p-2">
       <div class="d-flex justify-content-between">
         <label for="name">Nome</label>
         <span data-js="error" class="error"></span>
       </div>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        class="form-control mb-2"
-        required
-      />
+      <input type="text" name="name" id="name" class="form-control mb-2" required />
     </div>
 
     <!--TEXTAREA INPUT DEPOIMENTO-->
@@ -23,23 +17,11 @@
         <label for="testimony">Depoimento</label>
         <span data-js="error" class="error"></span>
       </div>
-      <textarea
-        name="testimony"
-        id="testimony"
-        cols="10"
-        rows="5"
-        class="d-block w-100 form-control"
-        style="resize: none"
-        required
-        max="120"
-      ></textarea>
+      <textarea name="testimony" id="testimony" class="d-block w-100 form-control" required max="120"></textarea>
     </div>
 
     <!--BUTTON SEND-->
-    <button
-      type="submit"
-      class="btn text-light bg-primary font-weight-bold mb-5"
-    >
+    <button type="submit" class="btn text-light bg-primary font-weight-bold mb-5">
       Enviar depoimento
     </button>
   </form>
@@ -48,7 +30,7 @@
 <!--DEPOIMENTOS-->
 <main>
   <article class="card m-0 p-3">
-    <h3 class="card-header text-center bg-primary h2">Depoimentos</h3>
+    <h3 class="card-header text-center bg-secondary">Depoimentos</h3>
     <time class="text-center text-dark" datetime="2022-01-04">2022/01/04</time>
     <section class="card-body">
       <p class="text-dark m-0 h5">
