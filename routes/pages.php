@@ -3,7 +3,7 @@
 use App\Http\Response;
 
 /**
- * Estamos usando o namespace de Pages então onde tinhamos anteriormente apenas o nome da classe de dentro do namespace
+ * Estamos usando o namespace de Pages então onde tínhamos anteriormente apenas o nome da classe de dentro do namespace
  * \Pages como por exemplo Home, teremos uma chamada mais extensa como Pages\Home
  *  */
 
@@ -35,8 +35,21 @@ $router->post("/testimonies", [
   }
 ]);
 
+$router->get("/sandbox", [
+  function () {
+    return new Response(200, Pages\Sandbox::getSandbox());
+  }
+]);
+
+
+$router->post("/sandbox", [
+  function () {
+    return new Response(200, Pages\Sandbox::getSandbox());
+  }
+]);
+
 $router->get("/pagina/{id}/{action}", [
-  function($id, $action) {
+  function ($id, $action) {
     return new Response(200, "Página $id - $action");
   }
 ]);
