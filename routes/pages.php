@@ -43,8 +43,8 @@ $router->get("/sandbox", [
 
 
 $router->post("/sandbox", [
-  function () {
-    return new Response(200, Pages\Sandbox::getSandbox());
+  function ($request) {
+    return new Response(200, Pages\Sandbox::postSandbox($request->getPostVars()));
   }
 ]);
 
