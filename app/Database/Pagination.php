@@ -19,7 +19,7 @@ class Pagination
   /**
    * Quantidade de páginas 
    */
-  private int $pages;
+  private int $pagesQuantity;
 
   /**
    * Página atual
@@ -49,10 +49,17 @@ class Pagination
      * quantas páginas teremos para disponibilizar dado um determinado
      * limite de resultados por página
      */
-    if ($this->countResults) {
-      $this->pages = $this->countResults / $this->limit;
-      return;
+    $resultsPerPage = ceil($this->countResults / $this->limit);
+    $defaultResultsPerPage = 1;
+    $this->pagesQuantity = $this->countResults > 0 ? $resultsPerPage : $defaultResultsPerPage;
+    $this->currentPage = $this->calculateCurrentPage();
+  }
+
+  private function calculateCurrentPage()
+  {
+    if ($this->currentPage <= $this->pagesQuantity) {
+      return $this->currentPage;
     }
-    $this->pages = 1;
+    return $this->pagesQuantity;
   }
 }
