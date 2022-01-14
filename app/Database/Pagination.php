@@ -65,4 +65,11 @@ class Pagination
     }
     return $this->pagesQuantity;
   }
+
+  public function getLimit()
+  {
+    $previousPageCount = $this->currentPage - 1;
+    $offSet = $this->limit * $previousPageCount;
+    return "$offSet, $this->limit";
+  }
 }
