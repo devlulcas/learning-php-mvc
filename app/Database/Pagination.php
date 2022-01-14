@@ -55,6 +55,9 @@ class Pagination
     $this->currentPage = $this->calculateCurrentPage();
   }
 
+  /**
+   * Garante que a página atual não seja maior que o total de páginas
+   */
   private function calculateCurrentPage()
   {
     if ($this->currentPage <= $this->pagesQuantity) {
