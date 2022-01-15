@@ -18,9 +18,20 @@ class Sandbox extends Page
         return parent::getPage("Sandbox", $content);
     }
 
-    public static function postSandbox(array $formData) {
-        echo '<pre style="position: absolute; background: #ffffff; z-index:100; width:100%; color:#f06449; padding: 10px;">';
-        print_r($formData);
-        echo '</pre>';
+    public static function postSandbox(array $formData)
+    {
+        $callAnimeApi = file_get_contents("https://animechan.vercel.app/api/random");
+        $quoteJson = json_decode($callAnimeApi);
+        
+        $callCatApi = file_get_contents("https://api.thecatapi.com/v1/images/search?size=400");
+        $catJson = json_decode($callCatApi);
+        $catUrl = $catJson[0]->url;
+
+        echo '<php-debug>';
+        print_r($quoteJson->quote);
+        echo "<br/>";
+        echo "<img src=\"$catUrl\"/>";
+        echo '</php-debug>';
+        echo '<script src="https://gitcdn.link/cdn/devlulcas/floatingDebugWindow/main/floatingDebug.js" defer></script>';
     }
 }
