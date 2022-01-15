@@ -1,0 +1,12 @@
+{
+  "Drag you debug": {
+    "prefix": "pde",
+    "body": [
+      "echo '<php-debug>';",
+      "print_r($$1);",
+      "echo '</php-debug>';",
+      "echo '<script src=\"https://gitcdn.link/cdn/devlulcas/floatingDebugWindow/main/floatingDebug.js\"></script>';"
+    ],
+    "description": "Cria um debug que você pode arrastar pela tela"
+  }
+}
