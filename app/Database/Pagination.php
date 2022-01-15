@@ -72,4 +72,34 @@ class Pagination
     $offSet = $this->limit * $previousPageCount;
     return "$offSet, $this->limit";
   }
+
+  public function getPages()
+  {
+    $pages = [];
+    if ($this->pagesQuantity === 1) return $pages;
+
+    for ($pageCounter = 1; $pageCounter < $this->pagesQuantity; $pageCounter++) {
+      $pages = [
+        "page" => $pageCounter,
+        "current" => $pageCounter == $this->currentPage
+      ];
+    }
+
+    return $pages;
+  }
+
+  public function getCurrentPage(): int
+  {
+    return $this->currentPage;
+  }
+
+  public function getPagesQuantity(): int
+  {
+    return $this->pagesQuantity;
+  }
+
+  public function getCountResults(): int
+  {
+    return $this->countResults;
+  }
 }
