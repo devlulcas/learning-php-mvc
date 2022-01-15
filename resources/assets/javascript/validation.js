@@ -55,9 +55,18 @@ function validateField(field) {
     const messages = {
       text: {
         valueMissing: "Por favor, preencha este campo",
+        patternMismatch: "Por favor, preencha o CEP neste formato: XXXXX-XXX",
       },
       textarea: {
         valueMissing: "Por favor, preencha este campo",
+      },
+      number: {
+        valueMissing: "Por favor, preencha este campo",
+      },
+      tel: {
+        valueMissing: "Por favor, preencha este campo",
+        patternMismatch:
+          "Por favor, preencha o número de telenone neste formato: (XX) 9XXXX-XXXX",
       },
     };
     // Busca em mensagem para determinado tipo de input, um erro. Ex: messages["password"]["tooShort"]
@@ -74,7 +83,7 @@ function validateField(field) {
      */
     if (message) {
       spanError.classList.add("active");
-      spanError.innerHTML = message;
+      spanError.innerHTML = ` - ${message}`;
     } else {
       spanError.classList.remove("active");
       spanError.innerHTML = "";
