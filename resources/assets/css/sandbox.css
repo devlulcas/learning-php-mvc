@@ -1,0 +1,17 @@
+.sandbox-form {
+  width: 50%;
+}
+
+.sandbox-form__content {
+  display: flex;
+  gap: 2rem;
+}
+
+.sandbox-form__content div,
+.sandbox-form__content input {
+  width: 100%;
+}
+
+.sandbox-form__submit {
+  width: 100%;
+}
