@@ -1,1 +1,111 @@
 <h2 class="text-center">{{sandboxDescription}}</h2>
+<form action="/sandbox" method="post">
+  <div>
+    <label for="username">Nome de usuário:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      class="d-block mb-3 rounded-pill"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="age">Idade:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="number"
+      name="age"
+      id="age"
+      class="d-block mb-3 rounded-pill"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="phone">Número de telefone:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="tel"
+      name="phone"
+      id="phone"
+      class="d-block mb-3 rounded-pill"
+      required
+      pattern="\(([11-99]{2})\)\s([9][0-9]{4})[-]([0-9]{4})"
+    />
+  </div>
+
+  <div>
+    <label for="cep">Seu CEP:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="cep"
+      id="cep"
+      class="d-block mb-3 rounded-pill"
+      required
+      pattern="[0-9]{5}-[0-9]{3}"
+      data-js="cepField"
+    />
+  </div>
+
+  <br />
+
+  <div>
+    <label for="city">Cidade:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="city"
+      id="city"
+      class="d-block mb-3 rounded-pill"
+      required
+	  data-js="city"
+    />
+  </div>
+
+  <div>
+    <label for="state">Estado:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="state"
+      id="state"
+      class="d-block mb-3 rounded-pill"
+      required
+	  data-js="state"
+    />
+  </div>
+
+  <div>
+    <label for="adress">Rua:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="adress"
+      id="adress"
+      class="d-block mb-3 rounded-pill"
+      required
+	  data-js="adress"
+    />
+  </div>
+
+  <div>
+    <label for="district">Bairro:</label>
+    <span data-js="error" class="d-inline"></span>
+    <input
+      type="text"
+      name="district"
+      id="district"
+      class="d-block mb-3 rounded-pill"
+      required
+	  data-js="district"
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<script src="/resources/assets/javascript/sandbox.js"></script>
